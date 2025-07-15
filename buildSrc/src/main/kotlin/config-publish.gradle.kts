@@ -49,8 +49,8 @@ val sourcesJar by tasks.existing(AbstractArchiveTask::class) {
 }
 
 gradlePlugin {
-    website.set("https://github.com/PaperMC/paperweight")
-    vcsUrl.set("https://github.com/PaperMC/paperweight")
+    website.set("https://github.com/LuminolMC/paperweight")
+    vcsUrl.set("https://github.com/LuminolMC/paperweight")
 }
 
 val shadowJar by tasks.existing(ShadowJar::class) {
@@ -114,7 +114,7 @@ publishing {
 }
 
 fun MavenPom.pomConfig() {
-    val repoPath = "Luminol/paperweight"
+    val repoPath = "LuminolMC/paperweight"
     val repoUrl = "https://github.com/$repoPath"
 
     name.set("paperweight")
@@ -141,6 +141,12 @@ fun MavenPom.pomConfig() {
             name.set("Kyle Wood")
             email.set("kyle@denwav.dev")
             url.set("https://github.com/DenWav")
+        }
+        developer {
+            id.set("MrHua269")
+            name.set("MrHua269")
+            email.set("mrhua269@gmail.com")
+            url.set("https://github.com/MrHua269")
         }
     }
 
