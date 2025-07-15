@@ -95,9 +95,12 @@ val shadowJar by tasks.existing(ShadowJar::class) {
 
 publishing {
     repositories {
-        maven("https://repo.papermc.io/repository/maven-snapshots/") {
-            credentials(PasswordCredentials::class)
-            name = "paper"
+        maven("https://repo.menthamc.com/repository/maven-snapshots/") {
+            name = "MenthaMC"
+            credentials(PasswordCredentials::class) {
+                username = System.getenv("MAVEN_USERNAME")
+                password = System.getenv("MAVEN_PASSWORD")
+            }
         }
     }
 
@@ -111,7 +114,7 @@ publishing {
 }
 
 fun MavenPom.pomConfig() {
-    val repoPath = "PaperMC/paperweight"
+    val repoPath = "Luminol/paperweight"
     val repoUrl = "https://github.com/$repoPath"
 
     name.set("paperweight")
