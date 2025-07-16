@@ -24,8 +24,8 @@ package io.papermc.paperweight.util.constants
 
 import org.gradle.api.Task
 
-const val PAPERWEIGHT_EXTENSION = "paperweight"
-const val PAPERWEIGHT_DEBUG = "paperweight.debug"
+const val PAPERWEIGHT_EXTENSION = "hyacinthusweight"
+const val PAPERWEIGHT_DEBUG = "hyacinthusweight.debug"
 fun paperweightDebug(): Boolean = System.getProperty(PAPERWEIGHT_DEBUG, "false") == "true"
 const val PAPERWEIGHT_VERBOSE_APPLY_PATCHES = "paperweight.verboseApplyPatches"
 
@@ -41,7 +41,7 @@ const val PARAM_MAPPINGS_CONFIG = "paramMappings"
 const val REMAPPER_CONFIG = "remapper"
 const val PLUGIN_REMAPPER_CONFIG = "pluginRemapper"
 const val DECOMPILER_CONFIG = "decompiler"
-const val PAPERCLIP_CONFIG = "paperclip"
+const val PAPERCLIP_CONFIG = "hyacinthusclip"
 const val MACHE_CONFIG = "mache"
 const val MACHE_CODEBOOK_CONFIG = "macheCodebook"
 const val MACHE_REMAPPER_CONFIG = "macheRemapper"
