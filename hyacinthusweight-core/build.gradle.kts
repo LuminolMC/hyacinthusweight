@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    shade(projects.paperweightLib)
+    shade(projects.hyacinthusweightLib)
 
     implementation(libs.bundles.kotson)
     implementation(libs.coroutines)
@@ -14,7 +14,7 @@ dependencies {
     implementation(libs.bundles.cadix)
     shade(libs.jgit)
 
-    testImplementation(project(":paperweight-lib", "testClassesJar"))
+    testImplementation(project(":hyacinthusweight-lib", "testClassesJar"))
 }
 
 gradlePlugin {
