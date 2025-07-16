@@ -40,7 +40,7 @@ fun ShadowJar.configureStandard() {
 
 val sourcesJar by tasks.existing(AbstractArchiveTask::class) {
     from(
-        zipTree(project(":paperweight-lib").tasks
+        zipTree(project(":hyacinthusweight-lib").tasks
             .named("sourcesJar", AbstractArchiveTask::class)
             .flatMap { it.archiveFile })
     ) {
@@ -49,8 +49,8 @@ val sourcesJar by tasks.existing(AbstractArchiveTask::class) {
 }
 
 gradlePlugin {
-    website.set("https://github.com/LuminolMC/paperweight")
-    vcsUrl.set("https://github.com/LuminolMC/paperweight")
+    website.set("https://github.com/LuminolMC/hyacinthusweight")
+    vcsUrl.set("https://github.com/LuminolMC/hyacinthusweight")
 }
 
 val shadowJar by tasks.existing(ShadowJar::class) {
@@ -98,8 +98,8 @@ publishing {
         maven("https://repo.menthamc.com/repository/maven-snapshots/") {
             name = "MenthaMC"
             credentials(PasswordCredentials::class) {
-                username = System.getenv("MAVEN_USERNAME")
-                password = System.getenv("MAVEN_PASSWORD")
+                username = System.getenv("PRIVATE_MAVEN_REPO_USERNAME")
+                password = System.getenv("PRIVATE_MAVEN_REPO_PASSWORD")
             }
         }
     }
@@ -114,11 +114,11 @@ publishing {
 }
 
 fun MavenPom.pomConfig() {
-    val repoPath = "LuminolMC/paperweight"
+    val repoPath = "LuminolMC/hyacinthusweight"
     val repoUrl = "https://github.com/$repoPath"
 
-    name.set("paperweight")
-    description.set("Gradle plugin for the PaperMC project")
+    name.set("hyacinthusweight")
+    description.set("Gradle plugin for the LuminolMC project")
     url.set(repoUrl)
     inceptionYear.set("2020")
 
