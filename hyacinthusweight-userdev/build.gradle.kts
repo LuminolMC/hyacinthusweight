@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    shade(projects.hyacinthusweightLib)
+    shade(projects.paperweightLib)
     implementation(libs.bundles.kotson)
     implementation(variantOf(libs.diffpatch) { classifier("all") }) {
         isTransitive = false
@@ -16,6 +16,6 @@ dependencies {
 gradlePlugin {
     setupPlugin("userdev") {
         description = "Gradle plugin for developing Paper plugins using server internals"
-        implementationClass = "moe.luminolmc.hyacinthusweight.userdev.PaperweightUser"
+        implementationClass = "io.papermc.paperweight.userdev.PaperweightUser"
     }
 }

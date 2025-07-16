@@ -40,7 +40,7 @@ fun ShadowJar.configureStandard() {
 
 val sourcesJar by tasks.existing(AbstractArchiveTask::class) {
     from(
-        zipTree(project(":hyacinthusweight-lib").tasks
+        zipTree(project(":paperweight-lib").tasks
             .named("sourcesJar", AbstractArchiveTask::class)
             .flatMap { it.archiveFile })
     ) {

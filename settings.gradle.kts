@@ -4,6 +4,6 @@ plugins {
 
 rootProject.name = "hyacinthusweight"
 
-include("hyacinthusweight-core", "hyacinthusweight-lib", "hyacinthusweight-userdev")
+include("hyacinthusweight-core", "paperweight-lib", "hyacinthusweight-userdev")
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
