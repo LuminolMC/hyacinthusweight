@@ -67,6 +67,10 @@ abstract class CreatePaperclipJar : JavaLauncherZippedTask() {
     @get:Inject
     abstract val workerExecutor: WorkerExecutor
 
+    @get:Internal
+    val rootProjectName = project.rootProject.name
+
+
     override fun init() {
         super.init()
 
@@ -104,7 +108,7 @@ abstract class CreatePaperclipJar : JavaLauncherZippedTask() {
         rootDir.resolve(DownloadContext.FILE_CN).writeText(contextCN.toString())
 
         val buildInfo = BuildInfo(
-            project.rootProject.name,
+            rootProjectName,
             mcVersion.get(),
             System.getenv("BUILD_NUMBER") ?: "DEV"
         )
