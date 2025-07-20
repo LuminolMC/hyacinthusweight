@@ -85,6 +85,7 @@ class PaperclipTasks(
             group = "bundling"
             description = "Build a runnable paperclip jar"
 
+            rootProjectName.set(project.rootProject.name)
             libraryChangesJson.set(bundlerJarTask.flatMap { it.libraryChangesJson })
             outputZip.set(layout.buildDirectory.file(jarName("paperclip", classifier).map { "libs/$it" }))
         }
@@ -148,6 +149,7 @@ class PaperclipTasks(
         originalBundlerJar.set(vanillaJar)
         bundlerJar.set(createBundlerJar.flatMap { it.outputZip })
         mcVersion.set(this@PaperclipTasks.mcVersion)
+        rootProjectName.set(project.rootProject.name)
 
         op.execute(this)
     }

@@ -53,6 +53,7 @@ class DevBundleTasks(
         libraryChangesJson.set(serverBundlerForDevBundle.flatMap { it.libraryChangesJson })
         originalBundlerJar.set(coreTasks.downloadServerJar.flatMap { it.outputJar })
         mcVersion.set(project.coreExt.minecraftVersion)
+        rootProjectName.set(project.rootProject.name)
     }
 
     val generateDevelopmentBundle by tasks.registering<GenerateDevBundle> {
