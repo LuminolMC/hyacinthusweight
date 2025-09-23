@@ -36,6 +36,7 @@ import io.papermc.paperweight.util.*
 import io.papermc.paperweight.util.constants.*
 import javax.inject.Inject
 import kotlin.io.path.*
+import net.fabricmc.lorenztiny.TinyMappingFormat
 import org.cadixdev.lorenz.model.ClassMapping
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.ListProperty
@@ -99,7 +100,7 @@ abstract class GenerateRelocatedReobfMappings : JavaLauncherTask() {
         }
 
         override fun execute() {
-            val mappingsIn = MappingFormats.TINY.read(
+            val mappingsIn =  TinyMappingFormat.STANDARD.read(
                 parameters.inputMappings.path,
                 DEOBF_NAMESPACE,
                 SPIGOT_NAMESPACE
@@ -114,7 +115,7 @@ abstract class GenerateRelocatedReobfMappings : JavaLauncherTask() {
                         .addLink(CraftBukkitRelocation(parameters.craftBukkitPackageVersion.get()))
                         .applyChain(mappingsIn, MappingsCompletionManager.create(hypoContext))
                 }
-            MappingFormats.TINY.write(
+            TinyMappingFormat.STANDARD.write(
                 mappingsOut,
                 parameters.outputMappings.path,
                 DEOBF_NAMESPACE,

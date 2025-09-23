@@ -37,6 +37,7 @@ import io.papermc.paperweight.util.*
 import io.papermc.paperweight.util.constants.*
 import javax.inject.Inject
 import kotlin.io.path.*
+import net.fabricmc.lorenztiny.TinyMappingFormat
 import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.ListProperty
@@ -101,7 +102,7 @@ abstract class CleanupMappings : JavaLauncherTask() {
         }
 
         override fun execute() {
-            val mappings = MappingFormats.TINY.read(
+            val mappings = TinyMappingFormat.STANDARD.read(
                 parameters.inputMappings.path,
                 SPIGOT_NAMESPACE,
                 DEOBF_NAMESPACE
@@ -124,7 +125,7 @@ abstract class CleanupMappings : JavaLauncherTask() {
                         .applyChain(mappings, MappingsCompletionManager.create(hypoContext))
                 }
 
-            MappingFormats.TINY.write(
+            TinyMappingFormat.STANDARD.write(
                 cleanedMappings,
                 parameters.outputMappings.path,
                 SPIGOT_NAMESPACE,
