@@ -38,6 +38,8 @@ import io.papermc.paperweight.util.constants.*
 import java.nio.file.Path
 import javax.inject.Inject
 import kotlin.io.path.*
+import me.coderfrish.mappings.MappingFormats
+import net.fabricmc.lorenztiny.TinyMappingFormat
 import org.cadixdev.lorenz.MappingSet
 import org.cadixdev.lorenz.merge.FieldMergeStrategy
 import org.cadixdev.lorenz.merge.MappingSetMerger
@@ -151,12 +153,12 @@ abstract class GenerateMappings : JavaLauncherTask() {
     abstract class GenerateMappingsAction : WorkAction<GenerateMappingsParams> {
 
         override fun execute() {
-            val vanillaMappings = MappingFormats.PROGUARD.createReader(parameters.vanillaMappings.path).use { it.read() }.reverse()
+            val vanillaMappings = MappingFormats.mappingFormats.PROGUARD().createReader(parameters.vanillaMappings.path).use { it.read() }.reverse()
 
             val paramMappings = parameters.paramMappings.orNull?.let { mappingsFile ->
                 mappingsFile.path.openZip().use { fs ->
                     val path = fs.getPath("mappings", "mappings.tiny")
-                    MappingFormats.TINY.read(path, "official", "named")
+                    TinyMappingFormat.STANDARD.read(path, "official", "named")
                 }
             }
 
@@ -189,7 +191,7 @@ abstract class GenerateMappings : JavaLauncherTask() {
                 }
 
             ensureParentExists(parameters.outputMappings)
-            MappingFormats.TINY.write(filledMerged, parameters.outputMappings.path, OBF_NAMESPACE, parameters.deobfNamespace.get())
+            TinyMappingFormat.STANDARD.write(filledMerged, parameters.outputMappings.path, OBF_NAMESPACE, parameters.deobfNamespace.get())
         }
     }
 }
