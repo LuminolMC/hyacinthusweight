@@ -42,7 +42,6 @@ import io.papermc.paperweight.util.*
 import io.papermc.paperweight.util.constants.*
 import javax.inject.Inject
 import kotlin.io.path.*
-import net.fabricmc.lorenztiny.TinyMappingFormat
 import org.cadixdev.lorenz.MappingSet
 import org.cadixdev.lorenz.model.ClassMapping
 import org.gradle.api.file.RegularFileProperty
@@ -190,17 +189,17 @@ abstract class GenerateReobfMappings : JavaLauncherTask() {
     abstract class GenerateReobfMappingsAction : WorkAction<GenerateReobfMappingsParams> {
 
         override fun execute() {
-            val spigotToMojang =  TinyMappingFormat.STANDARD.read(
+            val spigotToMojang = MappingFormats.TINY.read(
                 parameters.inputMappings.path,
                 SPIGOT_NAMESPACE,
                 DEOBF_NAMESPACE
             )
-            val obfToSpigot =  TinyMappingFormat.STANDARD.read(
+            val obfToSpigot = MappingFormats.TINY.read(
                 parameters.notchToSpigotMappings.path,
                 OBF_NAMESPACE,
                 SPIGOT_NAMESPACE
             )
-            val obfToMojang =  TinyMappingFormat.STANDARD.read(
+            val obfToMojang = MappingFormats.TINY.read(
                 parameters.sourceMappings.path,
                 OBF_NAMESPACE,
                 DEOBF_NAMESPACE
@@ -227,7 +226,7 @@ abstract class GenerateReobfMappings : JavaLauncherTask() {
                         .applyChain(outputMappings, MappingsCompletionManager.create(hypoContext))
                 }
 
-            TinyMappingFormat.STANDARD.write(
+            MappingFormats.TINY.write(
                 cleanedOutputMappings,
                 parameters.reobfMappings.path,
                 DEOBF_NAMESPACE,
