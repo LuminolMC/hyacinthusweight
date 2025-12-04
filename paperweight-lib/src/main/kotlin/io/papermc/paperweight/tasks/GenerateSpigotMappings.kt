@@ -24,8 +24,6 @@ package io.papermc.paperweight.tasks
 
 import io.papermc.paperweight.util.*
 import io.papermc.paperweight.util.constants.*
-import me.coderfrish.mappings.MappingFormats
-import net.fabricmc.lorenztiny.TinyMappingFormat
 import org.cadixdev.bombe.type.signature.FieldSignature
 import org.cadixdev.bombe.type.signature.MethodSignature
 import org.cadixdev.lorenz.MappingSet
@@ -69,9 +67,9 @@ abstract class GenerateSpigotMappings : BaseTask() {
 
     @TaskAction
     fun run() {
-        val spigotClassMappings = MappingFormats.mappingFormats.CSRG().createReader(classMappings.path).use { it.read() }
+        val spigotClassMappings = MappingFormats.CSRG.createReader(classMappings.path).use { it.read() }
 
-        val sourceMappings = TinyMappingFormat.STANDARD.read(
+        val sourceMappings = MappingFormats.TINY.read(
             sourceMappings.path,
             OBF_NAMESPACE,
             DEOBF_NAMESPACE
@@ -87,14 +85,14 @@ abstract class GenerateSpigotMappings : BaseTask() {
 
         val spigotToNamedSet = notchToSpigotSet.reverse().merge(sourceMappings)
 
-        TinyMappingFormat.STANDARD.write(
+        MappingFormats.TINY.write(
             notchToSpigotSet,
             notchToSpigotMappings.path,
             OBF_NAMESPACE,
             SPIGOT_NAMESPACE
         )
 
-        TinyMappingFormat.STANDARD.write(
+        MappingFormats.TINY.write(
             spigotToNamedSet,
             outputMappings.path,
             SPIGOT_NAMESPACE,
@@ -102,7 +100,7 @@ abstract class GenerateSpigotMappings : BaseTask() {
         )
 
         val spigotMembers = createSpigotMemberMappings(sourceMappings, spigotClassMappings)
-        MappingFormats.mappingFormats.CSRG().write(spigotMembers, spigotMemberMappings.path)
+        MappingFormats.CSRG.write(spigotMembers, spigotMemberMappings.path)
     }
 }
 

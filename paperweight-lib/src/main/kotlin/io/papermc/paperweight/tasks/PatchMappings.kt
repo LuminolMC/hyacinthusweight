@@ -61,13 +61,13 @@ abstract class PatchMappings : BaseTask() {
     }
 
     private fun appendPatch(input: Path, patch: Path?, output: Path) {
-        val mappings =  TinyMappingFormat.STANDARD.readCommented(
+        val mappings = MappingFormats.TINY.readCommented(
             input,
             fromNamespace.get(),
             toNamespace.get()
         )
         patch?.let {
-            TinyMappingFormat.STANDARD.readCommented(
+            MappingFormats.TINY.readCommented(
                 it,
                 fromNamespace.get(),
                 toNamespace.get(),
@@ -75,7 +75,7 @@ abstract class PatchMappings : BaseTask() {
             )
         }
 
-        TinyMappingFormat.STANDARD.write(mappings, output, fromNamespace.get(), toNamespace.get())
+        MappingFormats.TINY.write(mappings, output, fromNamespace.get(), toNamespace.get())
     }
 
     private fun TinyMappingFormat.readCommented(

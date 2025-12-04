@@ -29,10 +29,9 @@ import org.cadixdev.lorenz.io.MappingFormats as Formats
 /*
  * One place for all of the formats we use
  */
-@Deprecated("Catch Exception.")
 object MappingFormats {
 
-//    val TINY = TinyMappingFormat.STANDARD
-//    val CSRG: MappingFormat = Formats.CSRG
-//    val PROGUARD: MappingFormat = Formats.byId("proguard")
+    val TINY = TinyMappingFormat.STANDARD
+    val CSRG: MappingFormat = Formats.CSRG
+    val PROGUARD: MappingFormat = Formats.byId("proguard")
 }
