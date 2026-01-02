@@ -98,14 +98,20 @@ val shadowJar by tasks.existing(ShadowJar::class) {
 
 publishing {
     repositories {
-        maven("https://repo.menthamc.org/repository/maven-snapshots/") {
-            name = "MenthaMC"
-            credentials(PasswordCredentials::class) {
-                username = System.getenv("PRIVATE_MAVEN_REPO_USERNAME")
-                password = System.getenv("PRIVATE_MAVEN_REPO_PASSWORD")
+            val url = if (isSnapshot) {
+                "https://repo.menthamc.org/repository/maven-snapshots/"
+            } else {
+                "https://repo.menthamc.org/repository/maven-releases/"
+            }
+
+            maven(url) {
+                name = "MenthaMC"
+                credentials(PasswordCredentials::class) {
+                    username = System.getenv("PRIVATE_MAVEN_REPO_USERNAME")
+                    password = System.getenv("PRIVATE_MAVEN_REPO_PASSWORD")
+                }
             }
         }
-    }
 
     publications {
         withType(MavenPublication::class).configureEach {
