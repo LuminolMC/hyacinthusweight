@@ -96,6 +96,8 @@ val shadowJar by tasks.existing(ShadowJar::class) {
     }
 }
 
+val isSnapshot = project.version.toString().endsWith("-SNAPSHOT")
+
 publishing {
     repositories {
             val url = if (isSnapshot) {
@@ -109,9 +111,9 @@ publishing {
                 credentials(PasswordCredentials::class) {
                     username = System.getenv("PRIVATE_MAVEN_REPO_USERNAME")
                     password = System.getenv("PRIVATE_MAVEN_REPO_PASSWORD")
-                }
             }
         }
+    }
 
     publications {
         withType(MavenPublication::class).configureEach {
